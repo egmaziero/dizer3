@@ -1,14 +1,13 @@
 # DiZer 3
 
-```dizer3``` is a discoursive analyzer for Brazilian Portuguese.
+```dizer3``` is a discoursive analyzer for Brazilian Portuguese. It is under development...
 
 ### Installation
 
-- Clone this repository:
-```git clone https://github.com/egmaziero/cstparser.git```.   
+- Clone this repository
+```git clone https://github.com/egmaziero/dizer3.git```.   
 
-- Install dependencies using
-
+- Install dependencies 
 ```pip install -r requirements.txt```.
  
 
@@ -17,17 +16,17 @@
 
 To run the parser use:
 
-```python3 dizer3\run_pipeline.py --f file_path  -- s True/False```
+```python3 dizer3\run_pipeline.py --f file_path  --s True/False```
 
 or 
 
-```python3 dizer3\run_pipeline.py --d directory_path  -- s True/False```
+```python3 dizer3\run_pipeline.py --d directory_path  --s True/False```
 
 where 
 
 - ```--f``` indicates the a raw text file path. This argument takes precedence over ```-d```
-- ```--d``` indicates the directory with raw text files
-- ```--s``` is a boolean value (True or False) indicating if structural segments/relations will be considered. Default is True. See more detais in the thesis referenced below.
+- ```--d``` indicates the directory with raw text files to be analyzed
+- ```--s``` is a boolean value (True or False) indicating if structural segments/relations will be considered. Default is True. See more details in the thesis referenced below.
 
 ### Citation
 
