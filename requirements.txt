@@ -1,0 +1,5 @@
+jupyterlab
+nltk
+ufal.udpipe
+unidecode
+
