@@ -2,8 +2,11 @@ from utils import parenthetical_markers
 from utils import attribution_verbs
 
 def parenthetical(segment):
-    if segment[0]['token'] in parenthetical_markers.keys():
-        return 'parenthetical'
+    try:
+        if segment[0]['token'] in parenthetical_markers.keys():
+            return 'parenthetical'
+    except:
+        print('Error looking for parenthetical. Continuing...')
     return None
 
 
