@@ -1,19 +1,25 @@
+import logging
 from utils import parenthetical_markers
 from utils import attribution_verbs
 
-def parenthetical(segment):
+def parenthetical(left, righ):
     try:
-        if segment[0]['token'] in parenthetical_markers.keys():
-            return 'parenthetical'
+        if right[0]['token'] in parenthetical_markers.keys():
+            return 'parenthetical, ns'
+        elif left[0]['token'] in parenthetical_markers.keys():
+            return 'parenthetical, sn'
     except:
-        print('Error looking for parenthetical. Continuing...')
+        logging.warning('Error looking for parenthetical. Continuing...')
     return None
 
 
-def attribution(segment):
-    for token in segment:
+def attribution(left, right):
+    for token in left:
         if token['lemma'] in attribution_verbs:
-            return 'attribution'
+            return 'attribution,sn'
+    for token in right:
+        if token['lemma'] in attribution_verbs:
+            return 'attribution,ns'
         # if ( ((trim(lc($lemma)) eq "conforme") and ($pos eq "prp")) or ((trim(lc($lemma)) eq "segundo") and ($pos eq "prp")) or ((trim(lc($lemma)) eq "consoante") and ($pos eq "prp"))  or ((trim(lc($lemma)) eq "de acordo") and ($pos eq "adv")) )
         # {
         #     print "attribut";
@@ -22,27 +28,14 @@ def attribution(segment):
     return None
 
 
-def relations_by_rules(segmented_text):
+def relations_by_rules(left, right):
     relations = []
-
-    paragraph_index = 0
-    for sentences in segmented_text:
-        relations.append([])
-        sentence_index = 0
-        for segment in sentences:
-            relations[paragraph_index].append([])
-
-            relation = parenthetical(segment)
-            if relation is not None:
-                relations[paragraph_index][sentence_index].extend([relation])
-
-            relation = attribution(segment)
-            if relation is not None:
-                relations[paragraph_index][sentence_index].extend([relation])
-
-            sentence_index += 1
-        paragraph_index += 1
-
+    relation = parenthetical(left, right)
+    if relations is not None:
+        relations.append(relation)
+    relation = attribution(left, right)
+    if relations is not None:
+        relations.append(relation)
     # translation: can we train a NN to translate?
 
     # summarization: can we verify if two segments are very similar
