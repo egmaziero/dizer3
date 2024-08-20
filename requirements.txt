@@ -1,6 +1,6 @@
 jupyterlab
 unidecode
 ktrain==0.18.4
-nltk==3.5
+nltk==3.9
 pandas==1.0.5
 ufal.udpipe==1.2.0.3
